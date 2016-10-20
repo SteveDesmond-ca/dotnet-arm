@@ -1,0 +1,46 @@
+#!/bin/bash
+set -e
+
+sudo apt-get -y update
+sudo apt-get -y dist-upgrade
+sudo apt-get -y install debootstrap qemu-system-arm qemu-user-static
+
+COREHOST_BRANCH=master
+CORECLR_BRANCH=master
+COREFX_BRANCH=master
+CLI_BRANCH=rel/1.0.0
+LIBUV_BRANCH=master
+ROOTFS_DIR=$(pwd)/arm
+
+git clone git@github.com:dotnet/core-setup || true
+git clone git@github.com:dotnet/coreclr || true
+git clone git@github.com:dotnet/corefx || true
+git clone git@github.com:dotnet/cli || true
+git clone git@github.com:libuv/libuv || true
+
+cd core-setup
+git checkout $COREHOST_BRANCH
+git pull
+cd ..
+
+cd coreclr
+git checkout $CORECLR_BRANCH
+git pull
+cd ..
+
+cd corefx
+git checkout $COREFX_BRANCH
+git pull
+cd ..
+
+cd cli
+git checkout $CLI_BRANCH
+git pull
+cd ..
+
+cd libuv
+git checkout $LIBUV_BRANCH
+git pull
+cd ..
+
+sudo ROOTFS_DIR=$ROOTFS_DIR coreclr/cross/build-rootfs.sh
