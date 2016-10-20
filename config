@@ -1,0 +1,8 @@
+#!/bin/bash
+
+COREHOST_BRANCH=master
+CORECLR_BRANCH=master
+COREFX_BRANCH=master
+CLI_BRANCH=rel/1.0.0
+LIBUV_BRANCH=master
+ROOTFS_DIR=$(pwd)/armrootfs

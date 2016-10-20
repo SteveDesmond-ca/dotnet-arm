@@ -1,12 +1,7 @@
 #!/bin/bash
 set -e
 
-COREHOST_BRANCH=master
-CORECLR_BRANCH=master
-COREFX_BRANCH=master
-CLI_BRANCH=rel/1.0.0
-LIBUV_BRANCH=master
-ROOTFS_DIR=$(pwd)/armrootfs
+. config
 
 sudo apt-get -y update
 sudo apt-get -y dist-upgrade
