@@ -3,4 +3,6 @@ core-setup
 coreclr
 corefx
 libuv
-armrootfs
+rootfs
+bin
+out

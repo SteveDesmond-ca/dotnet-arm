@@ -1,0 +1,41 @@
+#!/bin/bash
+set -e
+
+. config
+
+mkdir -p $HOST_OUT
+mkdir -p $SHARED_OUT
+
+cd core-setup
+cd src/corehost
+#./build.sh --arch arm --rid ubuntu.16.04-arm --hostver $VERSION --fxrver $VERSION --policyver $VERSION --commithash $VERSION --xcompiler /usr/bin/arm-linux-gnueabihf-g++
+cd ../..
+cd ..
+
+cd coreclr
+./build.sh $ARCH $BUILD_CONFIG cross
+cd bin/Product/Linux.$ARCH.$BUILD_CONFIG
+cp coreconsole corerun crossgen ilasm ildasm *.so *.dll $SHARED_OUT
+cd ../../..
+cd ..
+
+cd corefx
+#./build.sh
+#cd bin
+#cp
+#cd ..
+cd ..
+
+cd cli
+#./build.sh
+#cd bin
+#cp
+#cd ..
+cd ..
+
+cd libuv
+#./build.sh
+#cd bin
+#cp
+#cd ..
+cd ..
