@@ -3,6 +3,9 @@ set -e
 
 . config
 
+mkdir -p $HOST_OUT
+mkdir -p $SHARED_OUT
+
 cd core-setup
 cd src/corehost
 #./build.sh --arch arm --rid ubuntu.16.04-arm --hostver $VERSION --fxrver $VERSION --policyver $VERSION --commithash $VERSION --xcompiler /usr/bin/arm-linux-gnueabihf-g++
@@ -10,12 +13,13 @@ cd ../..
 cd ..
 
 cd coreclr
-ROOTFS_DIR=$ROOTFS_DIR ./build.sh $ARCH $BUILD_CONFIG cross skiptests
+cd bin/Product/$OS_NAME.$ARCH.$BUILD_CONFIG
+cp corerun crossgen *.so *.dll $OUT_ROOT
+cd ../../..
 cd ..
 
 cd corefx
-ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-native -buildArch=$ARCH -$BUILD_CONFIG -os=$OS_NAME -SkipTests -- cross
-./run.sh build-managed -os=$OS_NAME -target-os=$OS_NAME -buildArch=$ARCH -debug -binaries
+cp bin/Linux.arm.Debug/Native/*.so $OUT_ROOT
 cd ..
 
 cd cli
