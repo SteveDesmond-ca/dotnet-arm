@@ -1,0 +1,29 @@
+#!/bin/bash
+set -e
+
+. config
+
+cd core-setup
+git checkout $COREHOST_BRANCH
+git pull
+cd ..
+
+cd coreclr
+git checkout $CORECLR_BRANCH
+git pull
+cd ..
+
+cd corefx
+git checkout $COREFX_BRANCH
+git pull
+cd ..
+
+cd cli
+git checkout $CLI_BRANCH
+git pull
+cd ..
+
+cd libuv
+git checkout $LIBUV_BRANCH
+git pull
+cd ..
