@@ -13,17 +13,16 @@ cd ../..
 cd ..
 
 cd coreclr
-./build.sh $ARCH $BUILD_CONFIG cross
-cd bin/Product/Linux.$ARCH.$BUILD_CONFIG
-cp coreconsole corerun crossgen ilasm ildasm *.so *.dll $SHARED_OUT
+ROOTFS_DIR=$ROOTFS_DIR ./build.sh $ARCH $BUILD_CONFIG cross skiptests
+cd bin/Product/$OS.$ARCH.$BUILD_CONFIG
+cp corerun crossgen *.so *.dll $OUT_ROOT
 cd ../../..
 cd ..
 
 cd corefx
-#./build.sh
-#cd bin
-#cp
-#cd ..
+ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-native -buildArch=$ARCH -$BUILD_CONFIG -os=$OS -SkipTests -- cross
+cp bin/Linux.arm.Debug/Native/*.so $OUT_ROOT
+#./run.sh build-managed -SkipTests -OSGroup=$OS -TargetOS=$OS -FilterToOSGroup=$OS -Platform=$ARCH -ConfigurationGroup=$BUILD_CONFIG
 cd ..
 
 cd cli

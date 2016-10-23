@@ -55,3 +55,4 @@ cd ..
 if [ ! -d "$ROOTFS_DIR" ]; then
   sudo ROOTFS_DIR=$ROOTFS_DIR coreclr/cross/build-rootfs.sh arm $ROOTFS_BRANCH
 fi
+sudo chroot $ROOTFS_DIR apt-get install build-essential symlinks gettext libcurl4-openssl-dev libicu-dev libkrb5-dev liblttng-ust-dev libssl-dev libunwind8-dev zlib1g-dev

@@ -5,6 +5,7 @@ CORECLR_BRANCH=master
 COREFX_BRANCH=master
 CLI_BRANCH=rel/1.0.0
 LIBUV_BRANCH=master
+OS=Linux
 ROOTFS_BRANCH=xenial
 ROOTFS_DIR=$(pwd)/rootfs/$ROOTFS_BRANCH
 ARCH=arm
