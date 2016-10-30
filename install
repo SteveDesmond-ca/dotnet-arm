@@ -7,19 +7,26 @@ mkdir -p $HOST_OUT
 mkdir -p $SHARED_OUT
 
 cd core-setup
-cd src/corehost
-#./build.sh --arch arm --rid ubuntu.16.04-arm --hostver $VERSION --fxrver $VERSION --policyver $VERSION --commithash $VERSION --xcompiler /usr/bin/arm-linux-gnueabihf-g++
-cd ../..
+cd resources
+cp -v LICENSE.txt ThirdPartyNotices.txt $OUT_ROOT
+cd ..
+cd src/corehost/cli
+cp -v exe/dotnet $OUT_ROOT
+cp -v exe/dotnet $SHARED_OUT
+cp -v exe/dotnet $SHARED_OUT/corehost
+cp -v dll/libhostpolicy.so $SHARED_OUT
+cp -v fxr/libhostfxr.so $HOST_OUT
+cd ../../..
 cd ..
 
 cd coreclr
 cd bin/Product/$OS_NAME.$ARCH.$BUILD_CONFIG
-cp corerun crossgen *.so *.dll $OUT_ROOT
+cp *.so *.dll $SHARED_OUT
 cd ../../..
 cd ..
 
 cd corefx
-cp bin/Linux.arm.Debug/Native/*.so $OUT_ROOT
+cp bin/Linux.arm.Debug/Native/*.so $SHARED_OUT
 cd ..
 
 cd cli
@@ -30,8 +37,5 @@ cd cli
 cd ..
 
 cd libuv
-#./build.sh
-#cd bin
-#cp
-#cd ..
+cp -v .libs/libuv.so $SHARED_OUT
 cd ..
