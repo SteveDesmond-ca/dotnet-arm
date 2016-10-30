@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+cd core-setup
+git clean -fdx
+git reset --hard
+cd ..
+
+cd coreclr
+git clean -fdx
+git reset --hard
+cd ..
+
+cd corefx
+git clean -fdx
+git reset --hard
+cd ..
+
+cd cli
+git clean -fdx
+git reset --hard
+cd ..
+
+cd libuv
+git clean -fdx
+git reset --hard
+cd ..
