@@ -16,17 +16,20 @@ cp -v exe/dotnet $SHARED_OUT
 cp -v exe/dotnet $SHARED_OUT/corehost
 cp -v dll/libhostpolicy.so $SHARED_OUT
 cp -v fxr/libhostfxr.so $HOST_OUT
+cp -v fxr/libhostfxr.so $SHARED_OUT
 cd ../../..
 cd ..
 
 cd coreclr
 cd bin/Product/$OS_NAME.$ARCH.$BUILD_CONFIG
-cp *.so *.dll $SHARED_OUT
+cp -v libclrjit.so libcoreclr.so libdbgshim.so libmscordaccore.so libmscordbi.so libsosplugin.so libsos.so mscorlib.dll sosdocsunix.txt $SHARED_OUT
 cd ../../..
 cd ..
 
 cd corefx
-cp bin/Linux.arm.Debug/Native/*.so $SHARED_OUT
+cd bin/$OS_NAME.$ARCH.$BUILD_CONFIG
+cp -v Native/*.a Native/*.so $SHARED_OUT
+cd ../..
 cd ..
 
 cd cli
