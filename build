@@ -5,7 +5,7 @@ set -e
 
 cd core-setup
 cd src/corehost
-#./build.sh --arch arm --rid ubuntu.16.04-arm --hostver $VERSION --fxrver $VERSION --policyver $VERSION --commithash $VERSION --xcompiler /usr/bin/arm-linux-gnueabihf-g++
+./build.sh --arch arm --rid ubuntu.16.04-arm --hostver $VERSION --fxrver $VERSION --policyver $VERSION --commithash $VERSION --xcompiler /usr/bin/arm-linux-gnueabihf-g++
 cd ../..
 cd ..
 
@@ -16,6 +16,7 @@ cd ..
 cd corefx
 ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-native -buildArch=$ARCH -$BUILD_CONFIG -os=$OS_NAME -SkipTests -- cross
 ./run.sh build-managed -os=$OS_NAME -target-os=$OS_NAME -buildArch=$ARCH -debug -binaries
+./run.sh build-managed -ProducesTarget | grep "^  " | sed 's/^  //' > bin/packages.txt
 cd ..
 
 cd cli
@@ -26,8 +27,7 @@ cd cli
 cd ..
 
 cd libuv
-#./build.sh
-#cd bin
-#cp
-#cd ..
+./autogen.sh
+./configure --host=arm-linux-gnueabihf
+make
 cd ..
