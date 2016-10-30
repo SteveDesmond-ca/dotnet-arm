@@ -5,25 +5,25 @@ set -e
 
 cd core-setup
 git checkout $COREHOST_BRANCH
-git pull
+git pull || true
 cd ..
 
 cd coreclr
 git checkout $CORECLR_BRANCH
-git pull
+git pull || true
 cd ..
 
 cd corefx
 git checkout $COREFX_BRANCH
-git pull
+git pull || true
 cd ..
 
 cd cli
 git checkout $CLI_BRANCH
-git pull
+git pull || true
 cd ..
 
 cd libuv
 git checkout $LIBUV_BRANCH
-git pull
+git pull || true
 cd ..
