@@ -29,7 +29,15 @@ cd ..
 cd corefx
 cd bin/$OS_NAME.$ARCH.$BUILD_CONFIG
 cp -v Native/*.a Native/*.so $SHARED_OUT
-cd ../..
+ls | xargs -I % find %/%.dll | xargs -I % cp -v % $SHARED_OUT
+cd ..
+cd Unix.$ARCH.$BUILD_CONFIG
+ls | xargs -I % find %/%.dll | xargs -I % cp -v % $SHARED_OUT
+cd ..
+cd AnyOS.$ARCH.$BUILD_CONFIG
+ls | xargs -I % find %/%.dll | xargs -I % cp -v % $SHARED_OUT
+cd ..
+cd ..
 cd ..
 
 cd cli
