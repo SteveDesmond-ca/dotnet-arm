@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+cd libuv
+git clean -fdx
+git reset --hard
+cd ..
+
 cd core-setup
 git clean -fdx
 git reset --hard
@@ -17,11 +22,6 @@ git reset --hard
 cd ..
 
 cd cli
-git clean -fdx
-git reset --hard
-cd ..
-
-cd libuv
 git clean -fdx
 git reset --hard
 cd ..

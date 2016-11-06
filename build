@@ -3,6 +3,12 @@ set -e
 
 . config
 
+cd libuv
+./autogen.sh
+./configure --host=arm-linux-gnueabihf
+make
+cd ..
+
 cd core-setup
 cd src/corehost
 ./build.sh --arch arm --rid ubuntu.16.04-arm --hostver $VERSION --fxrver $VERSION --policyver $VERSION --commithash $VERSION --xcompiler /usr/bin/arm-linux-gnueabihf-g++
@@ -11,12 +17,22 @@ cd ..
 
 cd coreclr
 ROOTFS_DIR=$ROOTFS_DIR ./build.sh $ARCH $BUILD_CONFIG cross skiptests
+cd bin/Product/$OS_NAME.$ARCH.$BUILD_CONFIG
+sudo cp -v crossgen libclrjit.so mscorlib.dll System.Private.CoreLib.dll $ROOTFS_DIR/dotnet-arm/
+sudo chroot $ROOTFS_DIR /dotnet-arm/crossgen /dotnet-arm/mscorlib.dll
+sudo chroot $ROOTFS_DIR /dotnet-arm/crossgen /dotnet-arm/System.Private.CoreLib.dll
+sudo cp $ROOTFS_DIR/dotnet-arm/*.ni.dll .
+cd ../../..
 cd ..
 
 cd corefx
+if [ ! -d "packages/NETStandard.Library" ]; then
+  ./run.sh sync
+fi
 ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-native -buildArch=$ARCH -$BUILD_CONFIG -os=$OS_NAME -SkipTests -- cross
-./run.sh build-managed -os=$OS_NAME -target-os=$OS_NAME -buildArch=$ARCH -debug -binaries
-./run.sh build-managed -ProducesTarget | grep "^  " | sed 's/^  //' > bin/packages.txt
+echo "Generating package list..."
+#./run.sh produces | grep "^  " | sed 's/^  //' > bin/packages.txt
+./run.sh build-managed -binaries -os=$OS_NAME -target-os=$OS_NAME -buildArch=$ARCH -ConfigurationGroup=$BUILD_CONFIG -SkipTests
 cd ..
 
 cd cli
@@ -24,10 +40,4 @@ cd cli
 #cd bin
 #cp
 #cd ..
-cd ..
-
-cd libuv
-./autogen.sh
-./configure --host=arm-linux-gnueabihf
-make
 cd ..

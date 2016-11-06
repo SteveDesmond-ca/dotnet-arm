@@ -2,9 +2,19 @@
 set -e
 
 . config
+rm -rf $OUT_ROOT
 
 mkdir -p $HOST_OUT
 mkdir -p $SHARED_OUT
+sudo mkdir -p $ROOTFS_DIR/dotnet-arm/
+
+cp -v Microsoft.NETCore.App.deps.json $SHARED_OUT
+git -C core-setup rev-parse HEAD > $SHARED_OUT/.version
+echo $VERSION >> $SHARED_OUT/.version
+
+cd libuv
+cp -v .libs/libuv.so $SHARED_OUT
+cd ..
 
 cd core-setup
 cd resources
@@ -22,21 +32,15 @@ cd ..
 
 cd coreclr
 cd bin/Product/$OS_NAME.$ARCH.$BUILD_CONFIG
-cp -v libclrjit.so libcoreclr.so libdbgshim.so libmscordaccore.so libmscordbi.so libsosplugin.so libsos.so mscorlib.dll sosdocsunix.txt $SHARED_OUT
+cp -v libclrjit.so libcoreclr.so libdbgshim.so libmscordaccore.so libmscordbi.so libsosplugin.so libsos.so mscorlib.dll mscorlib.ni.dll SOS.NETCore.dll sosdocsunix.txt System.Globalization.Native.so System.Private.CoreLib.dll System.Private.CoreLib.ni.dll $SHARED_OUT
 cd ../../..
 cd ..
 
 cd corefx
 cd bin/$OS_NAME.$ARCH.$BUILD_CONFIG
 cp -v Native/*.a Native/*.so $SHARED_OUT
-ls | xargs -I % find %/%.dll | xargs -I % cp -v % $SHARED_OUT
 cd ..
-cd Unix.$ARCH.$BUILD_CONFIG
-ls | xargs -I % find %/%.dll | xargs -I % cp -v % $SHARED_OUT
-cd ..
-cd AnyOS.$ARCH.$BUILD_CONFIG
-ls | xargs -I % find %/%.dll | xargs -I % cp -v % $SHARED_OUT
-cd ..
+cat ../../packages.txt | xargs -I % sh -c "find * -name %.dll | grep ^[LUA].*/%/%.dll$" | xargs -I % cp -v % $SHARED_OUT
 cd ..
 cd ..
 
@@ -45,8 +49,4 @@ cd cli
 #cd bin
 #cp
 #cd ..
-cd ..
-
-cd libuv
-cp -v .libs/libuv.so $SHARED_OUT
 cd ..
