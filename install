@@ -41,6 +41,7 @@ cd bin/$OS_NAME.$ARCH.$BUILD_CONFIG
 cp -v Native/*.a Native/*.so $SHARED_OUT
 cd ..
 cat ../../packages.txt | xargs -I % sh -c "find * -name %.dll | grep ^[LUA].*/%/%.dll$" | xargs -I % cp -v % $SHARED_OUT
+cp -v ref/Microsoft.VisualBasic/10.0.0.0/Microsoft.VisualBasic.dll $SHARED_OUT
 cd ..
 cd ..
 
