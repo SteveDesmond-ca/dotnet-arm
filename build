@@ -35,6 +35,10 @@ echo "Generating package list..."
 ./run.sh build-managed -binaries -os=$OS_NAME -target-os=$OS_NAME -buildArch=$ARCH -ConfigurationGroup=$BUILD_CONFIG -SkipTests
 cd ..
 
+cd roslyn
+make all BUILD_CONFIGURATION=$BUILD_CONFIG
+cd ..
+
 cd cli
 #./build.sh
 #cd bin

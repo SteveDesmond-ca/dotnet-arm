@@ -1,8 +1,10 @@
-cli
+*.deb
+libuv
 core-setup
 coreclr
 corefx
-libuv
+roslyn
+cli
 rootfs
 bin
 sdk

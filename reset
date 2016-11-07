@@ -21,6 +21,11 @@ git clean -fdx
 git reset --hard
 cd ..
 
+cd roslyn
+git clean -fdx
+git reset --hard
+cd ..
+
 cd cli
 git clean -fdx
 git reset --hard

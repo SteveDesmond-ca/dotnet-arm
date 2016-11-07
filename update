@@ -3,6 +3,11 @@ set -e
 
 . config
 
+cd libuv
+git checkout $LIBUV_BRANCH
+git pull || true
+cd ..
+
 cd core-setup
 git checkout $COREHOST_BRANCH
 git pull || true
@@ -18,12 +23,12 @@ git checkout $COREFX_BRANCH
 git pull || true
 cd ..
 
-cd cli
-git checkout $CLI_BRANCH
+cd roslyn
+git checkout $ROSLYN_BRANCH
 git pull || true
 cd ..
 
-cd libuv
-git checkout $LIBUV_BRANCH
+cd cli
+git checkout $CLI_BRANCH
 git pull || true
 cd ..

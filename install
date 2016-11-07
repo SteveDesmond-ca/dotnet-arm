@@ -44,6 +44,12 @@ cat ../../packages.txt | xargs -I % sh -c "find * -name %.dll | grep ^[LUA].*/%/
 cd ..
 cd ..
 
+cd roslyn
+cd Binaries/$BUILD_CONFIG
+cp -v Microsoft.CodeAnalysis.dll Microsoft.CodeAnalysis.CSharp.dll Microsoft.CodeAnalysis.VisualBasic.dll $SHARED_OUT
+cd ../..
+cd ..
+
 cd cli
 #./build.sh
 #cd bin
