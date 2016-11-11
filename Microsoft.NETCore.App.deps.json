@@ -442,7 +442,6 @@
           "runtimes/ubuntu.16.04-arm/native/System.Globalization.Native.so": {},
           "runtimes/ubuntu.16.04-arm/native/System.Private.CoreLib.ni.dll": {},
           "runtimes/ubuntu.16.04-arm/native/libcoreclr.so": {},
-          "runtimes/ubuntu.16.04-arm/native/libcoreclrtraceptprovider.so": {},
           "runtimes/ubuntu.16.04-arm/native/libdbgshim.so": {},
           "runtimes/ubuntu.16.04-arm/native/libmscordaccore.so": {},
           "runtimes/ubuntu.16.04-arm/native/libmscordbi.so": {},

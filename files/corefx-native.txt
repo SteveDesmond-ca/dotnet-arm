@@ -1,0 +1,6 @@
+System.IO.Compression.Native.so
+System.Native.a
+System.Native.so
+System.Net.Http.Native.so
+System.Net.Security.Native.so
+System.Security.Cryptography.Native.OpenSsl.so

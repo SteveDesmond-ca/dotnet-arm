@@ -1,0 +1,14 @@
+libclrjit.so
+libcoreclr.so
+libdbgshim.so
+libmscordaccore.so
+libmscordbi.so
+libsosplugin.so
+libsos.so
+mscorlib.dll
+mscorlib.ni.dll
+SOS.NETCore.dll
+sosdocsunix.txt
+System.Globalization.Native.so
+System.Private.CoreLib.dll
+System.Private.CoreLib.ni.dll

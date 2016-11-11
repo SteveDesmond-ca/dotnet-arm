@@ -20,8 +20,9 @@ ROOTFS_DIR=$ROOTFS_DIR ./build.sh $ARCH $BUILD_CONFIG cross skiptests
 cd bin/Product/$OS_NAME.$ARCH.$BUILD_CONFIG
 sudo cp -v crossgen libclrjit.so mscorlib.dll System.Private.CoreLib.dll $ROOTFS_DIR/dotnet-arm/
 sudo chroot $ROOTFS_DIR /dotnet-arm/crossgen /dotnet-arm/mscorlib.dll
+sudo cp -v $ROOTFS_DIR/dotnet-arm/mscorlib.ni.dll .
 sudo chroot $ROOTFS_DIR /dotnet-arm/crossgen /dotnet-arm/System.Private.CoreLib.dll
-sudo cp $ROOTFS_DIR/dotnet-arm/*.ni.dll .
+sudo cp -v $ROOTFS_DIR/dotnet-arm/System.Private.CoreLib.ni.dll .
 cd ../../..
 cd ..
 
@@ -30,8 +31,6 @@ if [ ! -d "packages/NETStandard.Library" ]; then
   ./run.sh sync
 fi
 ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-native -buildArch=$ARCH -$BUILD_CONFIG -os=$OS_NAME -SkipTests -- cross
-echo "Generating package list..."
-#./run.sh produces | grep "^  " | sed 's/^  //' > bin/packages.txt
 ./run.sh build-managed -binaries -os=$OS_NAME -target-os=$OS_NAME -buildArch=$ARCH -ConfigurationGroup=$BUILD_CONFIG -SkipTests
 cd ..
 

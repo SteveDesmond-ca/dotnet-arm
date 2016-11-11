@@ -6,7 +6,6 @@ rm -rf $OUT_ROOT
 
 mkdir -p $HOST_OUT
 mkdir -p $SHARED_OUT
-sudo mkdir -p $ROOTFS_DIR/dotnet-arm/
 
 cp -v Microsoft.NETCore.App.deps.json $SHARED_OUT
 git -C core-setup rev-parse HEAD > $SHARED_OUT/.version
@@ -32,22 +31,23 @@ cd ..
 
 cd coreclr
 cd bin/Product/$OS_NAME.$ARCH.$BUILD_CONFIG
-cp -v libclrjit.so libcoreclr.so libdbgshim.so libmscordaccore.so libmscordbi.so libsosplugin.so libsos.so mscorlib.dll mscorlib.ni.dll SOS.NETCore.dll sosdocsunix.txt System.Globalization.Native.so System.Private.CoreLib.dll System.Private.CoreLib.ni.dll $SHARED_OUT
+cat $FILES_ROOT/coreclr.txt | xargs -I % cp -v % $SHARED_OUT
 cd ../../..
 cd ..
 
 cd corefx
-cd bin/$OS_NAME.$ARCH.$BUILD_CONFIG
-cp -v Native/*.a Native/*.so $SHARED_OUT
-cd ..
-cat ../../packages.txt | xargs -I % sh -c "find * -name %.dll | grep ^[LUA].*/%/%.dll$" | xargs -I % cp -v % $SHARED_OUT
+cd bin
+cd $OS_NAME.$ARCH.$BUILD_CONFIG/Native
+cat $FILES_ROOT/corefx-native.txt | xargs -I % cp -v % $SHARED_OUT
+cd ../..
+cat $FILES_ROOT/corefx-packages.txt | xargs -I % sh -c "find * -name %.dll | grep ^[LUA].*/%/%.dll$" | xargs -I % cp -v % $SHARED_OUT
 cp -v ref/Microsoft.VisualBasic/10.0.0.0/Microsoft.VisualBasic.dll $SHARED_OUT
 cd ..
 cd ..
 
 cd roslyn
 cd Binaries/$BUILD_CONFIG
-cp -v Microsoft.CodeAnalysis.dll Microsoft.CodeAnalysis.CSharp.dll Microsoft.CodeAnalysis.VisualBasic.dll $SHARED_OUT
+cat $FILES_ROOT/roslyn.txt | xargs -I % cp -v % $SHARED_OUT
 cd ../..
 cd ..
 
