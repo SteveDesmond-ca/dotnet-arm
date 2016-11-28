@@ -4,31 +4,31 @@ set -e
 . config
 
 cd libuv
+git fetch
 git checkout $LIBUV_BRANCH
 git pull || true
 cd ..
 
 cd core-setup
+git fetch
 git checkout $COREHOST_BRANCH
 git pull || true
 cd ..
 
 cd coreclr
+git fetch
 git checkout $CORECLR_BRANCH
 git pull || true
 cd ..
 
 cd corefx
+git fetch
 git checkout $COREFX_BRANCH
 git pull || true
 cd ..
 
 cd roslyn
+git fetch
 git checkout $ROSLYN_BRANCH
-git pull || true
-cd ..
-
-cd cli
-git checkout $CLI_BRANCH
 git pull || true
 cd ..

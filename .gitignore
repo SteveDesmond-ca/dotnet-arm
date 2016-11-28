@@ -8,5 +8,5 @@ cli
 rootfs
 bin
 sdk
-new
 out
+hello

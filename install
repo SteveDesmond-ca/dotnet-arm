@@ -50,10 +50,3 @@ cd Binaries/$BUILD_CONFIG
 cat $FILES_ROOT/roslyn.txt | xargs -I % cp -v % $SHARED_OUT
 cd ../..
 cd ..
-
-cd cli
-#./build.sh
-#cd bin
-#cp
-#cd ..
-cd ..
