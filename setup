@@ -5,7 +5,7 @@ set -e
 
 sudo apt-get -y update
 sudo apt-get -y dist-upgrade
-sudo apt-get -y install cmake llvm-3.5 clang-3.5 lldb-3.6 lldb-3.6-dev libunwind8 libunwind8-dev gettext libicu-dev liblttng-ust-dev libcurl4-openssl-dev libssl-dev uuid-dev qemu qemu-user-static binfmt-support debootstrap binutils-arm-linux-gnueabihf clang-3.6 llvm-3.6 g++-arm-linux-gnueabihf gyp unzip
+sudo apt-get -y install cmake llvm-3.5 clang-3.5 lldb-3.6 lldb-3.6-dev libunwind8 libunwind8-dev gettext libicu-dev liblttng-ust-dev libcurl4-openssl-dev libssl-dev uuid-dev qemu qemu-user-static binfmt-support debootstrap binutils-arm-linux-gnueabihf clang-3.6 llvm-3.6 g++-arm-linux-gnueabihf gyp unzip libtool automake
 
 if [ ! -f "libicu52_52.1-8_amd64.deb" ]; then
   wget http://launchpadlibrarian.net/201330288/libicu52_52.1-8_amd64.deb
@@ -35,4 +35,7 @@ fi
 if [ ! -d "$ROOTFS_DIR" ]; then
   sudo ROOTFS_DIR=$ROOTFS_DIR coreclr/cross/build-rootfs.sh arm $ROOTFS_BRANCH
 fi
-sudo chroot $ROOTFS_DIR apt-get install build-essential symlinks gettext libcurl4-openssl-dev libicu-dev libkrb5-dev liblttng-ust-dev libssl-dev libunwind8-dev zlib1g-dev
+sudo chroot $ROOTFS_DIR apt-get -y update
+sudo chroot $ROOTFS_DIR apt-get -y dist-upgrade
+sudo chroot $ROOTFS_DIR apt-get -y install bash-completion build-essential symlinks gettext libcurl4-openssl-dev libicu-dev libkrb5-dev liblttng-ust-dev libssl-dev libunwind8-dev zlib1g-dev
+sudo chroot $ROOTFS_DIR symlinks -cr /usr
