@@ -20,9 +20,9 @@ cd resources
 cp -v LICENSE.txt ThirdPartyNotices.txt $OUT_ROOT
 cd ..
 cd src/corehost/cli
-cp -v exe/dotnet $OUT_ROOT
-cp -v exe/dotnet $SHARED_OUT
-cp -v exe/dotnet $SHARED_OUT/corehost
+cp -v exe/dotnet/dotnet $OUT_ROOT
+cp -v exe/dotnet/dotnet $SHARED_OUT
+cp -v exe/dotnet/dotnet $SHARED_OUT/corehost
 cp -v dll/libhostpolicy.so $SHARED_OUT
 cp -v fxr/libhostfxr.so $HOST_OUT
 cp -v fxr/libhostfxr.so $SHARED_OUT
