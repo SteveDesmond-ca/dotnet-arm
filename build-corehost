@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+. config
+
+cd core-setup
+cd src/corehost
+ROOTFS_DIR=$ROOTFS_DIR ./build.sh --arch arm --rid ubuntu.16.04-arm --hostver $VERSION --apphostver $VERSION --fxrver $VERSION --policyver $VERSION --commithash $VERSION --cross
+cd ../..
+cd ..

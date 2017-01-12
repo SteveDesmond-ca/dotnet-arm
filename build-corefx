@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+. config
+
+cd corefx
+if [ ! -d "packages/NETStandard.Library" ]; then
+  ./run.sh sync
+fi
+ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-native -buildArch=$ARCH -$BUILD_CONFIG -os=$OS_NAME -SkipTests -- cross
+./run.sh build-managed -binaries -os=$OS_NAME -target-os=$OS_NAME -buildArch=$ARCH -ConfigurationGroup=$BUILD_CONFIG -SkipTests
+cd ..

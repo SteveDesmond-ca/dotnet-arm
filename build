@@ -1,41 +1,8 @@
 #!/bin/bash
 set -e
 
-. config
-
-cd libuv
-./autogen.sh
-./configure --host=arm-linux-gnueabihf
-make
-cd ..
-
-cd core-setup
-cd src/corehost
-ROOTFS_DIR=$ROOTFS_DIR ./build.sh --arch arm --rid ubuntu.16.04-arm --hostver $VERSION --apphostver $VERSION --fxrver $VERSION --policyver $VERSION --commithash $VERSION --cross
-cd ../..
-cd ..
-
-cd coreclr
-ROOTFS_DIR=$ROOTFS_DIR ./build.sh $ARCH $BUILD_CONFIG cross skiptests
-cd bin/Product/$OS_NAME.$ARCH.$BUILD_CONFIG
-sudo mkdir -p $ROOTFS_DIR/dotnet-arm
-sudo rm -rf $ROOTFS_DIR/dotnet-arm/*
-sudo cp -v crossgen libclrjit.so mscorlib.dll System.Private.CoreLib.dll $ROOTFS_DIR/dotnet-arm/
-sudo chroot $ROOTFS_DIR /dotnet-arm/crossgen /dotnet-arm/mscorlib.dll
-sudo cp -v $ROOTFS_DIR/dotnet-arm/mscorlib.ni.dll .
-sudo chroot $ROOTFS_DIR /dotnet-arm/crossgen /dotnet-arm/System.Private.CoreLib.dll
-sudo cp -v $ROOTFS_DIR/dotnet-arm/System.Private.CoreLib.ni.dll .
-cd ../../..
-cd ..
-
-cd corefx
-if [ ! -d "packages/NETStandard.Library" ]; then
-  ./run.sh sync
-fi
-ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-native -buildArch=$ARCH -$BUILD_CONFIG -os=$OS_NAME -SkipTests -- cross
-./run.sh build-managed -binaries -os=$OS_NAME -target-os=$OS_NAME -buildArch=$ARCH -ConfigurationGroup=$BUILD_CONFIG -SkipTests
-cd ..
-
-cd roslyn
-make all BUILD_CONFIGURATION=$BUILD_CONFIG
-cd ..
+./build-libuv
+./build-corehost
+./build-coreclr
+./build-corefx
+./build-roslyn

@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+. config
+
+cd coreclr
+ROOTFS_DIR=$ROOTFS_DIR ./build.sh $ARCH $BUILD_CONFIG cross skiptests
+cd bin/Product/$OS_NAME.$ARCH.$BUILD_CONFIG
+sudo mkdir -p $ROOTFS_DIR/dotnet-arm
+sudo rm -rf $ROOTFS_DIR/dotnet-arm/*
+sudo cp -v crossgen libclrjit.so mscorlib.dll System.Private.CoreLib.dll $ROOTFS_DIR/dotnet-arm/
+sudo chroot $ROOTFS_DIR /dotnet-arm/crossgen /dotnet-arm/mscorlib.dll
+sudo cp -v $ROOTFS_DIR/dotnet-arm/mscorlib.ni.dll .
+sudo chroot $ROOTFS_DIR /dotnet-arm/crossgen /dotnet-arm/System.Private.CoreLib.dll
+sudo cp -v $ROOTFS_DIR/dotnet-arm/System.Private.CoreLib.ni.dll .
+cd ../../..
+cd ..

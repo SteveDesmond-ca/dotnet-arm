@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+. config
+
+cd roslyn
+make all BUILD_CONFIGURATION=$BUILD_CONFIG
+cd ..
