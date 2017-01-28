@@ -5,30 +5,35 @@ set -e
 
 cd libuv
 git fetch
+git reset --hard
 git checkout $LIBUV_BRANCH
 git pull || true
 cd ..
 
 cd core-setup
 git fetch
+git reset --hard
 git checkout $COREHOST_BRANCH
 git pull || true
 cd ..
 
 cd coreclr
 git fetch
+git reset --hard
 git checkout $CORECLR_BRANCH
 git pull || true
 cd ..
 
 cd corefx
 git fetch
+git reset --hard
 git checkout $COREFX_BRANCH
 git pull || true
 cd ..
 
 cd roslyn
 git fetch
+git reset --hard
 git checkout $ROSLYN_BRANCH
 git pull || true
 cd ..
