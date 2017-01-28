@@ -4,7 +4,5 @@ set -e
 . config
 
 cd core-setup
-cd src/corehost
-ROOTFS_DIR=$ROOTFS_DIR ./build.sh --arch arm --rid ubuntu.16.04-arm --hostver $VERSION --apphostver $VERSION --fxrver $VERSION --policyver $VERSION --commithash $VERSION --cross
-cd ../..
+./build.sh --skiptests --env-vars DISABLE_CROSSGEN=1,TARGETPLATFORM=$ARCH,TARGETRID=$RUNTIME_ID,CROSS=1,ROOTFS_DIR=$ROOTFS_DIR
 cd ..

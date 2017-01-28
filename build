@@ -2,7 +2,7 @@
 set -e
 
 ./build-libuv
-./build-corehost
 ./build-coreclr
 ./build-corefx
-./build-roslyn
+#./build-roslyn
+#./build-corehost
