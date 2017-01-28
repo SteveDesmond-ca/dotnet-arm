@@ -10,3 +10,4 @@ bin
 sdk
 out
 hello
+.nuget
