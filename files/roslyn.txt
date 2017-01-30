@@ -1,3 +1,0 @@
-Microsoft.CodeAnalysis.dll
-Microsoft.CodeAnalysis.CSharp.dll
-Microsoft.CodeAnalysis.VisualBasic.dll
