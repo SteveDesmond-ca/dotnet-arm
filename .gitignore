@@ -11,3 +11,5 @@ sdk
 out
 hello
 .nuget
+ci
+packages
