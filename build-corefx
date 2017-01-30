@@ -7,6 +7,9 @@ cd corefx
 if [ ! -d "packages/NETStandard.Library" ]; then
   ./run.sh sync
 fi
+grep "Microsoft.Private.CoreFx.NETCoreApp" ../core-setup/pkg/projects/Microsoft.NETCore.App/project.json.template > version.txt
+BUILD_NUMBER_MAJOR=$(cat version.txt | sed 's/.*-beta-//' | sed 's/-.*//')
+BUILD_NUMBER_MINOR=$(cat version.txt | sed 's/.*-beta-.*-//' | sed 's/".*//')
 ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-native -buildArch=$ARCH -os=$OS_NAME -SkipTests -$BUILD_CONFIG -- cross
-ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-managed -buildArch=$ARCH -os=$OS_NAME -SkipTests -ConfigurationGroup=$BUILD_CONFIG -runtimeos=ubuntu.16.04
+ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-managed -buildArch=$ARCH -os=$OS_NAME -SkipTests -ConfigurationGroup=$BUILD_CONFIG -runtimeos=$RUNTIME_ID_BASE -BuildNumberMajor=$BUILD_NUMBER_MAJOR -BuildNumberMinor=$BUILD_NUMBER_MINOR
 cd ..

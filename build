@@ -5,4 +5,4 @@ set -e
 ./build-coreclr
 ./build-corefx
 #./build-roslyn
-#./build-corehost
+./build-corehost
