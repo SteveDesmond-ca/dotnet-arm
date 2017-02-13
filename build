@@ -4,6 +4,6 @@ set -e
 ./build-libuv
 ./build-coreclr
 ./build-corefx
-#./build-roslyn
+./build-roslyn
 ./build-corehost
 ./build-cli

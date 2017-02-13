@@ -5,7 +5,7 @@ set -e
 
 sudo rm -rf $ROOTFS_DIR/dotnet
 sudo mkdir -p $ROOTFS_DIR/dotnet
-sudo tar -xf core-setup/artifacts/$RUNTIME_ID/packages/dotnet-$OS_DIST*.tar.gz -C $ROOTFS_INSTALL_DIR
+sudo tar -xvf core-setup/artifacts/$RUNTIME_ID/packages/dotnet-$OS_DIST*.tar.gz -C $ROOTFS_INSTALL_DIR
 sudo cp -v hello-world/* $ROOTFS_DIR/dotnet
 sudo mount --bind /proc $ROOTFS_DIR/proc
 sudo chroot $ROOTFS_DIR /dotnet/dotnet /dotnet/hello-world.dll
