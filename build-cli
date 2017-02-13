@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+. config
+
+mkdir -p packages
+cp -rv core-setup/artifacts/$RUNTIME_ID/corehost/*.nupkg packages
+cp -rv core-setup/artifacts/$RUNTIME_ID/packages/*.nupkg packages
+
+cp -v cli.nuget cli/NuGet.Config
+
+cd cli
+./run-build.sh --env-vars 'DOTNET_RUNTIME_ID=$RUNTIME_ID','RID=$RUNTIME_ID' -c $BUILD_CONFIG /p:CLIBUILD_SKIP_TESTS=true /p:DISABLE_CROSSGEN=1 /p:OverrideRid=$RUNTIME_ID
+cd ..

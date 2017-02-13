@@ -47,3 +47,12 @@ git checkout $COREHOST_BRANCH
 git pull || true
 git rebase || true
 cd ..
+
+cd cli
+git fetch
+git reset --hard
+git checkout -- *
+git checkout $CLI_BRANCH
+git pull || true
+git rebase || true
+cd ..

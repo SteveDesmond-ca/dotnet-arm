@@ -16,10 +16,6 @@ if [ ! -d "libuv" ]; then
   git clone git@github.com:libuv/libuv
 fi
 
-if [ ! -d "core-setup" ]; then
-  git clone git@github.com:dotnet/core-setup
-fi
-
 if [ ! -d "coreclr" ]; then
   git clone git@github.com:dotnet/coreclr
 fi
@@ -30,6 +26,14 @@ fi
 
 if [ ! -d "roslyn" ]; then
   git clone git@github.com:dotnet/roslyn
+fi
+
+if [ ! -d "core-setup" ]; then
+  git clone git@github.com:dotnet/core-setup
+fi
+
+if [ ! -d "cli" ]; then
+  git clone git@github.com:dotnet/cli
 fi
 
 if [ ! -d "$ROOTFS_DIR" ]; then

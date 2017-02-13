@@ -6,3 +6,4 @@ set -e
 ./build-corefx
 #./build-roslyn
 ./build-corehost
+./build-cli
