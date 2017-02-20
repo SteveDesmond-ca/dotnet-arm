@@ -26,7 +26,14 @@ git clean -fdx
 git reset --hard
 cd ..
 
+cd sdk
+git clean -fdx
+git reset --hard
+cd ..
+
 cd cli
 git clean -fdx
 git reset --hard
 cd ..
+
+rm -rf packages

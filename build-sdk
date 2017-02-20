@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+. config
+
+cp -v sdk.nuget sdk/NuGet.Config
+
+cd sdk
+./build.sh --configuration $BUILD_CONFIG --platform "Any CPU"
+cd ..
