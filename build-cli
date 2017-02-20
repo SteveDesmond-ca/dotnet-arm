@@ -3,10 +3,6 @@ set -e
 
 . config
 
-mkdir -p packages
-cp -rv core-setup/artifacts/$RUNTIME_ID/corehost/*.nupkg packages
-cp -rv core-setup/artifacts/$RUNTIME_ID/packages/*.nupkg packages
-
 cp -v cli.nuget cli/NuGet.Config
 
 cd cli

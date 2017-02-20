@@ -3,13 +3,13 @@ set -e
 
 . config
 
-mkdir -p packages
-cp -rv coreclr/bin/Product/$OS_NAME.$ARCH.$BUILD_CONFIG/.nuget/pkg/*.nupkg packages
-cp -rv corefx/bin/packages/$BUILD_CONFIG/*.nupkg packages
-
 cp -v core-setup.nuget core-setup/NuGet.Config
 
 cd core-setup
 rm -rf artifacts/$RUNTIME_ID/packages/*.tar.gz
 ./build.sh --skiptests --env-vars DISABLE_CROSSGEN=1,TARGETPLATFORM=$ARCH,TARGETRID=$RUNTIME_ID,CROSS=1,ROOTFS_DIR=$ROOTFS_DIR,CONFIGURATION=$BUILD_CONFIG
 cd ..
+
+mkdir -p packages
+cp -v core-setup/artifacts/$RUNTIME_ID/corehost/*.nupkg packages
+cp -v core-setup/artifacts/$RUNTIME_ID/packages/*.nupkg packages

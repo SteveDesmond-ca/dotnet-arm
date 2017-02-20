@@ -13,3 +13,6 @@ BUILD_NUMBER_MINOR=$(cat version.txt | sed 's/.*-beta-.*-//' | sed 's/".*//')
 ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-native -buildArch=$ARCH -os=$OS_NAME -SkipTests -$BUILD_CONFIG -- cross
 ROOTFS_DIR=$ROOTFS_DIR ./run.sh build-managed -buildArch=$ARCH -os=$OS_NAME -SkipTests -ConfigurationGroup=$BUILD_CONFIG -runtimeos=$RUNTIME_ID_BASE -BuildNumberMajor=$BUILD_NUMBER_MAJOR -BuildNumberMinor=$BUILD_NUMBER_MINOR
 cd ..
+
+mkdir -p packages
+cp -v corefx/bin/packages/$BUILD_CONFIG/*.nupkg packages
