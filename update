@@ -30,6 +30,15 @@ git pull || true
 git rebase || true
 cd ..
 
+cd sdk
+git fetch --tags
+git reset --hard
+git checkout -- *
+git checkout $SDK_BRANCH
+git pull || true
+git rebase || true
+cd ..
+
 cd roslyn
 git fetch --tags
 git reset --hard
@@ -44,15 +53,6 @@ git fetch --tags
 git reset --hard
 git checkout -- *
 git checkout $COREHOST_BRANCH
-git pull || true
-git rebase || true
-cd ..
-
-cd sdk
-git fetch --tags
-git reset --hard
-git checkout -- *
-git checkout $SDK_BRANCH
 git pull || true
 git rebase || true
 cd ..

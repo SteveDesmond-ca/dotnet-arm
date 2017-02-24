@@ -4,7 +4,7 @@ set -e
 ./build-libuv
 ./build-coreclr
 ./build-corefx
+./build-sdk
 ./build-roslyn
 ./build-corehost
-./build-sdk
 ./build-cli
