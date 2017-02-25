@@ -6,8 +6,8 @@ set -e
 cd libuv
 git fetch --tags
 git reset --hard
-git checkout -- *
-git checkout $LIBUV_BRANCH
+git checkout -- * || true
+git checkout $LIBUV_BRANCH || true
 git pull || true
 git rebase || true
 cd ..
@@ -15,8 +15,8 @@ cd ..
 cd coreclr
 git fetch --tags
 git reset --hard
-git checkout -- *
-git checkout $CORECLR_BRANCH
+git checkout -- * || true
+git checkout $CORECLR_BRANCH || true
 git pull || true
 git rebase || true
 cd ..
@@ -24,8 +24,8 @@ cd ..
 cd corefx
 git fetch --tags
 git reset --hard
-git checkout -- *
-git checkout $COREFX_BRANCH
+git checkout -- * || true
+git checkout $COREFX_BRANCH || true
 git pull || true
 git rebase || true
 cd ..
@@ -33,8 +33,8 @@ cd ..
 cd sdk
 git fetch --tags
 git reset --hard
-git checkout -- *
-git checkout $SDK_BRANCH
+git checkout -- * || true
+git checkout $SDK_BRANCH || true
 git pull || true
 git rebase || true
 cd ..
@@ -42,8 +42,8 @@ cd ..
 cd roslyn
 git fetch --tags
 git reset --hard
-git checkout -- *
-git checkout $ROSLYN_BRANCH
+git checkout -- * || true
+git checkout $ROSLYN_BRANCH || true
 git pull || true
 git rebase || true
 cd ..
@@ -51,8 +51,8 @@ cd ..
 cd core-setup
 git fetch --tags
 git reset --hard
-git checkout -- *
-git checkout $COREHOST_BRANCH
+git checkout -- * || true
+git checkout $COREHOST_BRANCH || true
 git pull || true
 git rebase || true
 cd ..
@@ -60,8 +60,8 @@ cd ..
 cd cli
 git fetch --tags
 git reset --hard
-git checkout -- *
-git checkout $CLI_BRANCH
+git checkout -- * || true
+git checkout $CLI_BRANCH || true
 git pull || true
 git rebase || true
 cd ..
