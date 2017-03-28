@@ -14,47 +14,33 @@ sudo dpkg -i libicu52_52.1-8_amd64.deb
 
 if [ ! -d "libuv" ]; then
   git clone https://github.com/libuv/libuv
-else
-  git -C libuv pull
 fi
 
 if [ ! -d "coreclr" ]; then
   git clone https://github.com/dotnet/coreclr
-else
-  git -C coreclr pull
 fi
 
 if [ ! -d "corefx" ]; then
   git clone https://github.com/dotnet/corefx
-else
-  git -C corefx pull
 fi
 
 if [ ! -d "sdk" ]; then
   git clone https://github.com/dotnet/sdk
-else
-  git -C sdk pull
 fi
 
 if [ ! -d "roslyn" ]; then
   git clone https://github.com/dotnet/roslyn
-else
-  git -C roslyn pull
 fi
 
 if [ ! -d "core-setup" ]; then
   git clone https://github.com/dotnet/core-setup
-else
-  git -C core-setup pull
 fi
 
 if [ ! -d "cli" ]; then
   git clone https://github.com/dotnet/cli
-  git -C cli remote add qmfrederik https://github.com/qmfrederik/cli
-  git -C cli fetch qmfrederik
-  git -C cli cherry-pick 14d8f808fc74181a8ec38c4173c0ccf74f2f6bc9
-else
-  git -C cli pull
+  git -C cli remote add vtsv https://github.com/stevedesmond-ca/dotnet-cli || true
+  git -C cli fetch vtsv
+  git -C cli cherry-pick aac7e39a7ea641bfdc1b38c739b06cc231db8773
 fi
 
 if [ ! -d "$ROOTFS_DIR" ]; then
