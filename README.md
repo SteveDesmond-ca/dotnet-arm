@@ -1,6 +1,10 @@
 # dotnet-arm
 ## Automated builds of .NET Core for Ubuntu 16.04 on ARM
 
+### Notice
+
+There are official nightly builds of the .NET Core Runtime for ARM Linux available at https://github.com/dotnet/core-setup
+
 ### Running
 
 1. See [here](https://github.com/dotnet/core/blob/master/samples/RaspberryPiInstructions.md) for prerequisites (for all ARM, not just Raspberry Pi)
