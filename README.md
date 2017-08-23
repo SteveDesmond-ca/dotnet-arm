@@ -5,6 +5,8 @@
 
 There are official nightly builds of the .NET Core Runtime for ARM Linux available at https://github.com/dotnet/core-setup
 
+These scripts are largely deprecated in favor of the official end-to-end build repo at https://github.com/dotnet/source-build
+
 ### Running
 
 1. See [here](https://github.com/dotnet/core/blob/master/samples/RaspberryPiInstructions.md) for prerequisites (for all ARM, not just Raspberry Pi)
